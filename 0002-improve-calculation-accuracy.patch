@@ -1,0 +1,48 @@
+From 2ea20e2924bed7179be98eda41c69b71fbbbda7f Mon Sep 17 00:00:00 2001
+From: Sergii Piatakov <sergii.piatakov@globallogic.com>
+Date: Thu, 15 Nov 2018 15:21:34 +0200
+Subject: [PATCH 2/2] improve calculation accuracy
+
+Allow using float point arguments to avoid truncation.
+
+Test: Add (4.9, 4.9) should return 10.
+Signed-off-by: Sergii Piatakov <sergii.piatakov@globallogic.com>
+---
+ calculator.cpp | 4 ++--
+ calculator.h   | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/calculator.cpp b/calculator.cpp
+index 3c63184..b91afea 100644
+--- a/calculator.cpp
++++ b/calculator.cpp
+@@ -1,11 +1,11 @@
+ #include "calculator.h"
+ 
+-int Calculator::Add (int a, int b)
++int Calculator::Add (double a, double b)
+ {
+     return a + b;
+ }
+ 
+-int Calculator::Sub (int a, int b)
++int Calculator::Sub (double a, double b)
+ {
+     return Add (a, -b);
+ }
+diff --git a/calculator.h b/calculator.h
+index 5647eab..4e3c197 100644
+--- a/calculator.h
++++ b/calculator.h
+@@ -1,6 +1,6 @@
+ class Calculator
+ {
+     public:
+-        int Add (int, int);
+-        int Sub (int, int);
++        int Add (double, double);
++        int Sub (double, double);
+ };
+-- 
+2.34.1
+
